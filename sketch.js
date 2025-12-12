@@ -403,3 +403,7 @@ function mouseDragged() {
     song.setVolume(volume);
   }
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
