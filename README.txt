@@ -5,6 +5,8 @@ A space themed audio visualizer using waveform visualization
 GITHUB LINK:
 https://itsrioo.github.io/audio-visualizer/
 
+GITHUB REPO LINK:
+https://github.com/itsrioo/audio-visualizer
 
 Features
 - Play/Pause Controls
