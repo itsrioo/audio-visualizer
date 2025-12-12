@@ -1,5 +1,6 @@
 let song;
 let fft;
+let currentVolume = 0.5;
 
 function preload() {
   song = loadSound('assets/song3.mp3');
@@ -8,7 +9,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   fft = new p5.FFT();
-  song.setVolume(0.5)
+  song.setVolume(currentVolume);
   textFont('Orbitron');
 }
 
@@ -346,11 +347,11 @@ function drawVolumeSlider() {
   fill(150, 150, 180);
   rect(sliderX - sliderWidth / 2, sliderY, sliderWidth, sliderHeight, 8);
   
-  let volume = song.getVolume();
+  // Use currentVolume instead of song.getVolume()
   fill(255, 255, 200);
-  rect(sliderX - sliderWidth / 2, sliderY, volume * sliderWidth, sliderHeight, 8);
+  rect(sliderX - sliderWidth / 2, sliderY, currentVolume * sliderWidth, sliderHeight, 8);
   
-  let knobX = sliderX - sliderWidth / 2 + volume * sliderWidth;
+  let knobX = sliderX - sliderWidth / 2 + currentVolume * sliderWidth;
   let knobY = sliderY + sliderHeight / 2;
   
   // Moon circle
@@ -369,7 +370,7 @@ function drawVolumeSlider() {
   noStroke();
   textAlign(CENTER, CENTER);
   textSize(36);
-  let volumePercent = round(volume * 100);
+  let volumePercent = round(currentVolume * 100);
   text(volumePercent + "%", sliderX + 4, sliderY + 80);
 }
 
@@ -397,10 +398,10 @@ function mouseDragged() {
   let sliderWidth = 400;
   
   if (abs(mouseY - sliderY) < 60) {
-    let volume = (mouseX - (sliderX - sliderWidth / 2)) / sliderWidth;
-    volume = constrain(volume, 0, 1);
+    currentVolume = (mouseX - (sliderX - sliderWidth / 2)) / sliderWidth;
+    currentVolume = constrain(currentVolume, 0, 1);
     
-    song.setVolume(volume);
+    song.setVolume(currentVolume);
   }
 }
 
